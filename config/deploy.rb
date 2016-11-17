@@ -2,7 +2,9 @@
 lock '3.5.0'
 
 set :application, 'amazon_project'
-set :repo_url, 'git@github.com:vyivrain/amazon_project.git'
+set :repository, 'git@github.com:vyivrain/amazon_project.git'
+set :scm, :git
+set :user, 'ec2-user'
 set :branch, :master
 set :deploy_to, '/home/ec2-user/amazon_project'
 set :pty, true

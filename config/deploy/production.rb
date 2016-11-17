@@ -7,10 +7,9 @@
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
 
-
-
-# role-based syntax
-# ==================
+set :user, 'ec2-user'
+server 'ec2-35-162-128-63.us-west-2.compute.amazonaws.com', :app, :web, :db, primary: true
+ssh_options[:keys] = ['~/.ssh/my_amazon.pem']
 
 # Defines a role with one or multiple servers. The primary server in each
 # group is considered to be the first unless any  hosts have the primary
