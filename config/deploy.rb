@@ -1,10 +1,10 @@
 # config valid only for current version of Capistrano
 lock '3.5.0'
 
+set :stages, %w(production staging)
 set :application, 'amazon_project'
 set :repository, 'git@github.com:vyivrain/amazon_project.git'
 set :scm, :git
-set :user, 'ec2-user'
 set :branch, :master
 set :deploy_to, '/home/ec2-user/amazon_project'
 set :pty, true
@@ -28,6 +28,7 @@ set :puma_worker_timeout, nil
 set :puma_init_active_record, true
 set :puma_preload_app, false
 
+stage = 'production'
 desc 'check production task'
 task :check_production do
   if stage.to_s == "production"

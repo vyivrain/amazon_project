@@ -8,8 +8,9 @@
 # server 'db.example.com', user: 'deploy', roles: %w{db}
 
 set :user, 'ec2-user'
-server 'ec2-35-162-128-63.us-west-2.compute.amazonaws.com', :app, :web, :db, primary: true
-ssh_options[:keys] = ['~/.ssh/my_amazon.pem']
+server 'ec2-user@ec2-35-162-128-63.us-west-2.compute.amazonaws.com', roles: [:app, :web, :db], primary: true
+set :stage, 'production'
+ssh_options = { keys: ['~/.ssh/my_amazon.pem'], forward_agent: true, user: 'ec2-user' }
 
 # Defines a role with one or multiple servers. The primary server in each
 # group is considered to be the first unless any  hosts have the primary
