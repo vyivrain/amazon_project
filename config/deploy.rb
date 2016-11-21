@@ -3,8 +3,8 @@ lock '3.5.0'
 
 set :stages, %w(production staging)
 set :application, 'amazon_project'
-set :repository, 'git@github.com:vyivrain/amazon_project.git'
-set :scm, :git_copy
+set :repo_url, 'https://github.com/vyivrain/amazon_project.git'
+set :scm, :git
 set :branch, :master
 set :deploy_to, '/home/ec2-user/amazon_project'
 set :pty, true

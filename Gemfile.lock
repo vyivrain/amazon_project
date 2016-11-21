@@ -57,9 +57,9 @@ GEM
     capistrano-bundler (1.1.4)
       capistrano (~> 3.1)
       sshkit (~> 1.2)
-    capistrano-git-copy (1.2.0)
-      capistrano (>= 3.1.0, < 4.0.0)
     capistrano-harrow (0.5.2)
+    capistrano-locally (0.2.4)
+      capistrano (~> 3.0)
     capistrano-rails (1.1.7)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
@@ -199,7 +199,7 @@ DEPENDENCIES
   byebug
   capistrano
   capistrano-bundler
-  capistrano-git-copy
+  capistrano-locally
   capistrano-rails
   capistrano-rvm
   capistrano3-puma
