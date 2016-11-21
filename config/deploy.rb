@@ -7,6 +7,7 @@ set :repo_url, 'https://github.com/vyivrain/amazon_project.git'
 set :scm, :git
 set :branch, :master
 set :deploy_to, '/home/ec2-user/amazon_project'
+set :deploy_via, :remote_cache
 set :pty, true
 set :linked_files, %w{config/database.yml config/application.yml config/secrets.yml}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads}
@@ -28,18 +29,13 @@ set :puma_worker_timeout, nil
 set :puma_init_active_record, true
 set :puma_preload_app, false
 
-stage = 'production'
-desc 'check production task'
-task :check_production do
-  if stage.to_s == "production"
-    puts " \n Are you REALLY sure you want to deploy to production?"
-    puts " \n Enter the password to continue\n "
-    password = STDIN.gets[0..7] rescue nil
-    if password != 'mypasswd'
-      puts "\n !!! WRONG PASSWORD !!!"
-      exit
+namespace :deploy do
+  after :restart, :clear_cache do
+    on roles(:web), in: :groups, limit: 3, wait: 10 do
+      # Here we can do anything such as:
+      # within release_path do
+      #   execute :rake, 'cache:clear'
+      # end
     end
   end
 end
-
-before 'deploy', 'check_production'
