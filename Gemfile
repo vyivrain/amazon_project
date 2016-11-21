@@ -27,7 +27,6 @@ group :development do
   gem 'capistrano-rails', require: false
   gem 'capistrano-bundler', require: false
   gem 'capistrano-locally', require: false
-  gem 'capistrano-rbenv'
   gem 'capistrano-rvm'
 end
 
