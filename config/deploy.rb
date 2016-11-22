@@ -6,7 +6,7 @@ set :application, 'amazon_project'
 set :repo_url, 'https://github.com/vyivrain/amazon_project.git'
 set :scm, :git
 set :branch, :master
-set :deploy_to, '/home/ec2-user/amazon_project'
+set :deploy_to, '/home/ubuntu/amazon_project'
 set :deploy_via, :remote_cache
 set :pty, true
 set :linked_files, %w{config/database.yml config/application.yml config/secrets.yml}
