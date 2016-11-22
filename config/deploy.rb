@@ -56,7 +56,7 @@ namespace :deploy do
   desc 'Initial Deploy'
   task :initial do
     on roles(:app) do
-      before 'deploy:restart', 'puma:start'
+      before 'deploy:restart', 'puma:start', 'rvm rvmrc warning ignore allGemfiles'
       invoke 'deploy'
     end
   end
