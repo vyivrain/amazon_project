@@ -57,7 +57,9 @@ namespace :deploy do
   task :initial do
     on roles(:app) do
       before 'deploy:restart', 'puma:start', 'rvm rvmrc warning ignore allGemfiles'
-      after 'deploy:assets:backup_manifest', 'rake db:create'
+      after 'deploy:assets:backup_manifest', :create_db do
+        run 'rake db:create'
+      end
       invoke 'deploy'
     end
   end
