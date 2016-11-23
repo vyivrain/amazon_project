@@ -53,13 +53,21 @@ namespace :deploy do
     end
   end
 
+  task :invoke, :command do |_task, args|
+    on roles(:app) do
+      within current_path do
+        with rails_env: fetch(:rails_env) do
+          execute :rake, args[:command]
+        end
+      end
+    end
+  end
+
   desc 'Initial Deploy'
   task :initial do
     on roles(:app) do
       before 'deploy:restart', 'puma:start', 'rvm rvmrc warning ignore allGemfiles'
-      after 'deploy:assets:backup_manifest', :create_db do
-        run 'rake db:create'
-      end
+      after 'deploy:assets:backup_manifest', 'deploy:invoke[db:create]'
       invoke 'deploy'
     end
   end
